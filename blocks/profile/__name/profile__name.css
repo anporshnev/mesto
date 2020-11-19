@@ -1,0 +1,10 @@
+.profile__name {
+  margin-top: 26px;
+  margin-bottom: 0;
+  font-weight: 500;
+  font-size: 27px;
+  line-height: 1.22;
+  display: inline-block;
+  text-align: center;
+  padding-left: 28px;
+}
