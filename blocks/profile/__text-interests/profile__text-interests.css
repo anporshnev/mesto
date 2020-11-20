@@ -1,7 +1,9 @@
 .profile__text-interests {
-  margin-top: 7px;
+  margin-top: 0;
   margin-bottom: 0;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.21;
+  grid-area: text;
+  text-align: center;
 }

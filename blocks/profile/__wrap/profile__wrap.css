@@ -1,0 +1,11 @@
+.profile__wrap {
+  padding-top: 26px;
+  padding-bottom: 33px;
+  display: grid;
+  grid-template-columns: 36px 189px 36px;
+  grid-template-rows: min-content 2fr;
+  gap: 9px 10px;
+  grid-template-areas:
+  ". name btn"
+  "text text text";
+}

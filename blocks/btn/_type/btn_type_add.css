@@ -1,0 +1,10 @@
+.btn_type_add {
+  display: inline-block;
+  vertical-align: middle;
+  background-image: url(../../../images/btn_add.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 282px;
+  height: 50px;
+  border: 2px solid #FFFFFF;
+}
