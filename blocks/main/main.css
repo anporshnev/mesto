@@ -6,3 +6,10 @@
   -moz-osx-font-smoothing: grayscale;
   color: #FFFFFF;
 }
+
+@media screen and (min-width: 1280px) {
+  .main{
+    max-width: 880px;
+    margin: 0 auto;
+  }
+}

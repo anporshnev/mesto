@@ -7,3 +7,13 @@
   grid-auto-flow: row;
   row-gap: 20px;
 }
+
+@media screen and (min-width: 1280px) {
+  .cards {
+    gap: 20px 17px;
+    grid-template-columns: repeat(auto-fit, 282px);
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 38px;
+  }
+}

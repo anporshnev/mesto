@@ -5,3 +5,10 @@
   object-fit: contain;
   border-radius: 100%;
 }
+
+@media screen and (min-width: 1280px) {
+  .profile__avatar {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

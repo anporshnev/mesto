@@ -9,3 +9,14 @@
   ". name btn"
   "text text text";
 }
+
+@media screen and (min-width: 1280px) {
+  .profile__wrap {
+    grid-template-columns: 10px 294px 30px 214px;
+    grid-template-areas:
+    ". name btn ."
+    ". text text .";
+    gap: 10px 18px;
+    padding-top: 30px;
+  }
+}

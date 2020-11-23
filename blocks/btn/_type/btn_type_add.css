@@ -14,3 +14,10 @@
   opacity: .25;
   cursor: pointer;
 }
+
+@media screen and (min-width: 1280px) {
+  .btn_type_add {
+    background-image: url(../../../images/btn_add_desktop.svg);
+    width: 150px;
+  }
+}
