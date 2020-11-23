@@ -1,0 +1,6 @@
+.card__wrap {
+  padding: 7.81vw 4.68vw 25px 6.56vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

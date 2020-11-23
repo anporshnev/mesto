@@ -7,4 +7,10 @@
   width: 282px;
   height: 50px;
   border: 2px solid #FFFFFF;
+  transition: opacity .3s ease;
+}
+
+.btn_type_add:hover {
+  opacity: .25;
+  cursor: pointer;
 }

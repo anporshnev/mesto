@@ -11,4 +11,10 @@
   grid-area: btn;
   align-self: start;
   margin-top: 10px;
+  transition: opacity .3s ease;
+}
+
+.profile__btn-edit:hover {
+  opacity: .8;
+  cursor: pointer;
 }

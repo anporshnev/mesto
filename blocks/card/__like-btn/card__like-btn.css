@@ -1,0 +1,12 @@
+.card__like-btn {
+  min-width: 22px;
+  height: 22px;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  background-image: url(../../../images/btn_like.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  padding: 0;
+
+}

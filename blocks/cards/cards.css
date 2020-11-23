@@ -1,0 +1,9 @@
+.cards {
+  padding-left: 5.93vw;
+  padding-right: 5.93vw;
+  padding-top: 36px;
+  display: grid;
+  grid-template-rows: auto;
+  grid-auto-flow: row;
+  row-gap: 20px;
+}
