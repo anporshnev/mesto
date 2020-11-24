@@ -1,0 +1,16 @@
+.btn_type_save {
+  color: #FFFFFF;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  border: none;
+  padding: 14px 82px;
+  margin-top: 45px;
+  transition: opacity .3s ease;
+}
+
+.btn_type_save:hover {
+  cursor: pointer;
+  opacity: .8;
+}

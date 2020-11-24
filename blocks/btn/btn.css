@@ -1,6 +1,7 @@
 .btn {
+  display: inline-block;
   background-color: #000000;
   border-radius: 2px;
   box-sizing: border-box;
-
+  vertical-align: middle;
 }

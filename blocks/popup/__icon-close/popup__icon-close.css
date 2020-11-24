@@ -1,0 +1,18 @@
+.popup__icon-close {
+  width: 26px;
+  height: 26px;
+  background-image: url(../../../images/popup_btn_close_icon.svg);
+  background-position: center;
+  /* background-color: rgba(0, 0, 0, 0); */
+  /* background-color: royalblue; */
+  border: none;
+  position: absolute;
+  bottom: 341px;
+  left: 252px;
+  transition: opacity .3s ease;
+}
+
+.popup__icon-close:hover {
+  cursor: pointer;
+  opacity: .6;
+}
