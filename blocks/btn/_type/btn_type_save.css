@@ -1,9 +1,8 @@
 .btn_type_save {
   color: #FFFFFF;
-  font-weight: normal;
+  font-weight: 400;
   font-size: 14px;
-  line-height: 17px;
-  text-align: center;
+  line-height: 1.21;
   border: none;
   padding: 14px 82px;
   margin-top: 45px;
@@ -13,4 +12,15 @@
 .btn_type_save:hover {
   cursor: pointer;
   opacity: .8;
+}
+
+@media screen and (min-width: 1280px) {
+  .btn_type_save {
+    width: 100%;
+    font-size: 18px;
+    line-height: 1.22;
+    padding-left: 124px;
+    padding-right: 124px;
+    margin-top: 50px;
+  }
 }

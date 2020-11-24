@@ -16,3 +16,13 @@
   cursor: pointer;
   opacity: .6;
 }
+
+@media screen and (min-width: 1280px) {
+  .popup__icon-close {
+    background-image: url(../../../images/popup_btn_close_icon_large.svg);
+    width: 40px;
+    height: 40px;
+    bottom: 330px;
+    left: 430px;
+  }
+}
