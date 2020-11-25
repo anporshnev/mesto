@@ -17,7 +17,7 @@
         <img class="profile__avatar" src="./images/header_avatar.jpg" alt="Изображение профиля">
         <div class="profile__wrap">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button class="profile__btn-edit"></button>
+          <button type="button" class="profile__btn-edit"></button>
           <p class="profile__text-interests">Исследователь океана</p>
         </div>
         <buttton class="btn btn_type_add"></buttton>
@@ -28,57 +28,55 @@
             <img class="card__image" src="./images/card_karachaevo.jpg" alt="Красоты Карачаево-Черкесии">
             <div class="card__wrap">
               <h2 class="card__title">Карачаево-Черкесия</h2>
-              <button class="card__like-btn"></button>
+              <button class="card__btn-like"></button>
             </div>
           </div>
           <div class="card">
             <img class="card__image" src="./images/card_baikal.jpg" alt="Красоты Байкала">
             <div class="card__wrap">
               <h2 class="card__title">Озеро Байкал</h2>
-              <button class="card__like-btn"></button>
+              <button class="card__btn-like"></button>
             </div>
           </div>
           <div class="card">
             <img class="card__image" src="./images/card_dombai.png" alt="Красоты Домбая">
             <div class="card__wrap">
               <h2 class="card__title">Домбай</h2>
-              <button class="card__like-btn"></button>
+              <button class="card__btn-like"></button>
             </div>
           </div>
           <div class="card">
             <img class="card__image" src="./images/card_elbrus.jpg" alt="Красоты Эльбруса">
             <div class="card__wrap">
               <h2 class="card__title">Гора Эльбрус</h2>
-              <button class="card__like-btn"></button>
+              <button class="card__btn-like"></button>
             </div>
           </div>
           <div class="card">
             <img class="card__image" src="./images/card_kamchatka.jpg" alt="Красоты Камчатки">
             <div class="card__wrap">
               <h2 class="card__title">Камчатка</h2>
-              <button class="card__like-btn"></button>
+              <button class="card__btn-like"></button>
             </div>
           </div>
           <div class="card">
             <img class="card__image" src="./images/card_kareliya.jpg" alt="Красоты Карелии">
             <div class="card__wrap">
               <h2 class="card__title">Карелия</h2>
-              <button class="card__like-btn"></button>
+              <button class="card__btn-like"></button>
             </div>
           </div>
       </section>
-      <div class="popup popup_opened">
+      <div class="popup">
         <div class="popup__container">
           <div class="popup__content">
             <h2 class="popup__title">Редактировать профиль</h2>
             <input class="popup__input popup__input_content_username" type="text" name="username" value="" placeholder="Имя" tabindex="1">
             <input class="popup__input popup__input_content_about" type="text" name="about" value="" placeholder="О себе" tabindex="2">
             <!-- В будущем для иконок попробовать тег svg -->
-            <a href="#" class="popup__icon-close"></a>
+            <button type="button" class="popup__icon-close"></button>
             <button class="btn btn_type_save">Сохранить</button>
           </div>
-
-
         </div>
       </div>
     </main>

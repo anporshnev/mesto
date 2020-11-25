@@ -3,13 +3,14 @@
   height: 26px;
   background-image: url(../../../images/popup_btn_close_icon.svg);
   background-position: center;
-  /* background-color: rgba(0, 0, 0, 0); */
+  background-color: rgba(0, 0, 0, 0);
   /* background-color: royalblue; */
   border: none;
   position: absolute;
   bottom: 341px;
   left: 252px;
   transition: opacity .3s ease;
+  padding: 0;
 }
 
 .popup__icon-close:hover {
