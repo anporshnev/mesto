@@ -6,6 +6,9 @@
   height: 50px;
   border: 2px solid #FFFFFF;
   transition: opacity .3s ease;
+  grid-area: btn-save;
+  align-self: end;
+  justify-self: center;
 }
 
 .btn_type_add:hover {
@@ -17,5 +20,7 @@
   .btn_type_add {
     background-image: url(../../../images/btn_add_desktop.svg);
     width: 150px;
+    align-self: center;
+    justify-self: end;
   }
 }
