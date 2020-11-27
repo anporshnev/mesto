@@ -10,7 +10,7 @@
 
 @media screen and (min-width: 768px) {
   .elements {
-    gap: 20px 17px;
+    column-gap: 17px;
     grid-template-columns: repeat(auto-fill, minmax(282px, 1fr));
     padding-top: 36px;
   }
@@ -18,9 +18,7 @@
 
 @media screen and (min-width: 1024px) {
   .elements {
-    gap: 20px 17px;
     grid-template-columns: repeat(3, 282px);
-    padding-top: 36px;
     max-width: 880px;
     margin: 0 auto;
   }
@@ -28,7 +26,6 @@
 
 @media screen and (min-width: 1280px) {
   .elements {
-    gap: 20px 17px;
     grid-template-columns: repeat(auto-fit, 282px);
     padding-left: 0;
     padding-right: 0;
