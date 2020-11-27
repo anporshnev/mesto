@@ -5,10 +5,15 @@
   border-radius: 10px;
   position: relative;
   padding: 25px 22px;
+  max-width: 282px;
+  margin: 0 auto;
+  box-sizing: border-box;
+
 }
 
 @media screen and (min-width: 1280px) {
   .popup__content {
     padding: 34px 36px 37px;
+    max-width: 430px;
   }
 }

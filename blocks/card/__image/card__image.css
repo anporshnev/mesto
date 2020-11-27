@@ -2,11 +2,4 @@
   display: block;
   width: 100%;
   border-radius: 10px 10px 0px 0px;
-  /* transition: 1s ease; */
 }
-
-/* .card__image:hover {
-  transform: matrix(-1, 0, 0, 1, 0, 0);
-} */
-
-

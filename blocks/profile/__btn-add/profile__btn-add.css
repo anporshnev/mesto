@@ -1,4 +1,4 @@
-.btn_type_add {
+.profile__btn-add {
   background-image: url(../../../images/btn_add.svg);
   background-repeat: no-repeat;
   background-position: center;
@@ -11,13 +11,13 @@
   justify-self: center;
 }
 
-.btn_type_add:hover {
+.profile__btn-add:hover {
   opacity: .6;
   cursor: pointer;
 }
 
 @media screen and (min-width: 1280px) {
-  .btn_type_add {
+  .profile__btn-add {
     background-image: url(../../../images/btn_add_desktop.svg);
     width: 150px;
     align-self: center;

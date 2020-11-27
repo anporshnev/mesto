@@ -1,5 +1,5 @@
 .profile__wrap {
-  padding-top: 26px;
+  padding-top: 23px;
   display: grid;
   grid-template-columns: 36px 189px 36px;
   grid-template-rows: min-content min-content 74px;
@@ -12,7 +12,7 @@
 
 @media screen and (min-width: 1280px) {
   .profile__wrap {
-    grid-template-columns: 10px 294px 30px 370px;
+    grid-template-columns: 12px 294px 30px 370px;
     grid-template-rows: min-content min-content;
     grid-template-areas:
     ". name btn btn-save"

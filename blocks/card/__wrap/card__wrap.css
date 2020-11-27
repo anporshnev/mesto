@@ -5,7 +5,7 @@
   align-items: center;
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 768px) {
   .card__wrap {
     padding: 25px 15px 25px 21px;
   }

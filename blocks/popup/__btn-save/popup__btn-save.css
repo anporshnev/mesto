@@ -1,4 +1,4 @@
-.btn_type_save {
+.popup__btn-save {
   color: #FFFFFF;
   font-weight: 400;
   font-size: 14px;
@@ -7,15 +7,16 @@
   padding: 14px 82px;
   margin-top: 45px;
   transition: opacity .3s ease;
+  margin-top: 46px;
 }
 
-.btn_type_save:hover {
+.popup__btn-save:hover {
   cursor: pointer;
   opacity: .8;
 }
 
 @media screen and (min-width: 1280px) {
-  .btn_type_save {
+  .popup__btn-save {
     width: 100%;
     font-size: 18px;
     line-height: 1.22;
