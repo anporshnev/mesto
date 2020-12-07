@@ -1,12 +1,6 @@
 .card__wrap {
-  padding: 7.81vw 4.68vw 7.81vw 6.56vw;
+  padding: 25px 15px 25px 21px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-@media screen and (min-width: 768px) {
-  .card__wrap {
-    padding: 25px 15px 25px 21px;
-  }
 }
