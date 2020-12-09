@@ -4,7 +4,6 @@ const profileName = document.querySelector('.profile__name');
 const profileInterests = document.querySelector('.profile__text-interests');
 
 const popupNode = document.querySelector('.popup');
-const popupButtonClose= document.querySelector('.popup__icon-close');
 const popupContent = document.querySelector('.popup__content');
 const formProfile = document.querySelector('.popup__form');
 const popupProfile = document.querySelector('.popup-profile');
@@ -18,42 +17,52 @@ const popupInputImageLink = document.querySelector('.popup__input_content_image-
 
 const elements = document.querySelector('.elements');
 
-const sendInitialElements = initialCards.forEach(item =>{
+let getInitialElements = () => {initialCards.forEach(item =>{
   const cardTemplate = document.querySelector('#card').content;
   const cardElement = cardTemplate.cloneNode(true);
   cardElement.querySelector('.card__image').src = item.link;
   cardElement.querySelector('.card__image').alt = `Изображение места ${item.name}`;
   cardElement.querySelector('.card__title').textContent = item.name;
   return elements.append(cardElement);
-})
+});
+}
+getInitialElements();
 
-
-let openPopupProfile = () => {
-  popupProfile.classList.add('popup_open');
-  function getValuesProfile() {
-      popupInputName.value = profileName.textContent;
-      popupInputInterest.value = profileInterests.textContent;
-    }
-  return getValuesProfile();
+let openPopup = popup => {
+  popup.classList.add('popup_open');
 }
 
-let closePopupProfile = () => popupProfile.classList.remove('popup_open');
-// Будет универсальная функция закрытия
-let openPopupCard = () => popupCard.classList.add('popup_open');
+let closePopupButton = () => {
+  const popupButtonClose= document.querySelectorAll('.popup__icon-close');
+  popupButtonClose.forEach(item => {
+    item.addEventListener('click', (e) => {
+      const eventTarget = e.target.closest('.popup');
+      eventTarget.classList.remove('popup_open');
+    });
+  })
+}
+closePopupButton();
 
-let handleFormSubmit = (event) => {
+let handleProfileSubmit = event => {
   event.preventDefault();
   profileName.textContent = popupInputName.value;
   profileInterests.textContent = popupInputInterest.value;
-  closePopupProfile();
+  popupProfile.classList.remove('popup_open');
 }
 
+profileButtonEdit.addEventListener('click', () => {
+  popupInputName.value = profileName.textContent;
+  popupInputInterest.value = profileInterests.textContent;
+  openPopup(popupProfile);
+})
 
-profileButtonEdit.addEventListener('click', openPopupProfile);
+profileButtonAdd.addEventListener('click', () => {
+  openPopup(popupCard);
+});
 
-profileButtonAdd.addEventListener('click', openPopupCard);
+formProfile.addEventListener('submit', handleProfileSubmit);
 
-formProfile.addEventListener('submit', handleFormSubmit);
+
 
 
 
