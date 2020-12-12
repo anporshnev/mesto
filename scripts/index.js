@@ -34,13 +34,28 @@ let composeCard = ({name, link}) => {
 
 let renderList =() => {
   const cardItems = initialCards.map(composeCard);
+  console.log(cardItems);
+  console.log(...cardItems);
   elements.append(...cardItems);
 }
+
+let addNewCard = () => {
+  const inputNamePlace =  popupInputPlaceName.value;
+  const inputLinkImage =  popupInputImageLink.value;
+  const newCard = composeCard({name: inputNamePlace, link: inputLinkImage});
+  console.log(newCard);
+  elements.prepend(newCard);
+  popupInputPlaceName.value = '';
+  popupInputImageLink.value = '';
+}
+
+let removeCard = () => {
+  let eventTarget = e.target;
+  let currentTarget = eventTarget.closest('.card');
+  currentTarget.remove();
+}
+
 renderList();
-
-
-
-
 
 // const renderCards=
 //   initialCards.forEach(item => {
@@ -103,11 +118,9 @@ profileButtonEdit.addEventListener('click', () => {
   openPopup(popupProfile);
 })
 
-// profileButtonAdd.addEventListener('click', () => {
-//   popupInputPlaceName.value = '';
-//   popupInputImageLink.value = '';
-//   openPopup(popupCard);
-// });
+profileButtonAdd.addEventListener('click', () => {
+  openPopup(popupCard);
+});
 
 profileButtonClose.addEventListener('click', () => {
   closePopup(popupProfile);
@@ -119,7 +132,7 @@ cardButtonClose.addEventListener('click', () => {
 
 formProfile.addEventListener('submit', handleProfileSubmit);
 
-// formCard.addEventListener('submit', handleCardSubmit);
+formCard.addEventListener('submit', handleCardSubmit);
 
 
 
