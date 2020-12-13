@@ -29,33 +29,58 @@ let composeCard = ({name, link}) => {
   newCard.querySelector('.card__image').src = link;
   newCard.querySelector('.card__image').alt = `Изображение места ${name}`;
   newCard.querySelector('.card__title').textContent = name;
+  // const likeButton = newCard.querySelector('.card__btn-like');
+  // likeButton.addEventListener ('click', onLikeButton);
+  // const removeButton = newCard.querySelector('.card__btn-remove');
+  // removeButton.addEventListener('click', removeCard);
+  const card = newCard.querySelector('.card');
+  card.addEventListener('click', onLikeButton);
+  card.addEventListener('click', removeCard);
   return newCard;
 };
 
 let renderList =() => {
   const cardItems = initialCards.map(composeCard);
-  console.log(cardItems);
-  console.log(...cardItems);
   elements.append(...cardItems);
 }
 
 let addNewCard = () => {
   const inputNamePlace =  popupInputPlaceName.value;
   const inputLinkImage =  popupInputImageLink.value;
-  const newCard = composeCard({name: inputNamePlace, link: inputLinkImage});
-  console.log(newCard);
-  elements.prepend(newCard);
-  popupInputPlaceName.value = '';
-  popupInputImageLink.value = '';
+  if (inputNamePlace !== '' && inputLinkImage !== '') {
+    const newCard = composeCard({name: inputNamePlace, link: inputLinkImage});
+    elements.prepend(newCard);
+    popupInputPlaceName.value = '';
+    popupInputImageLink.value = '';
+  }
 }
 
-let removeCard = () => {
-  let eventTarget = e.target;
-  let currentTarget = eventTarget.closest('.card');
-  currentTarget.remove();
+let onLikeButton = (e) => {
+  const eventTarget = e.target;
+  if(eventTarget.classList.contains('card__btn-like')) {
+    eventTarget.classList.toggle('card__btn-like_active');
+  }
 }
+
+let removeCard = (e) => {
+  const eventTarget = e.target;
+  if(eventTarget.classList.contains('card__btn-remove')) {
+    let currentTarget = e.currentTarget;
+    // console.log(1);
+    currentTarget.removeEventListener('click', onLikeButton);
+    currentTarget.removeEventListener('click', removeCard);
+
+    currentTarget.remove();
+  }
+}
+
+// let onLikeButton = (e) => {
+//   let eventTarget = e.target;
+//   eventTarget.classList.toggle('card__btn-like_active');
+// }
 
 renderList();
+
 
 // const renderCards=
 //   initialCards.forEach(item => {
@@ -71,14 +96,6 @@ renderList();
 //     composeCard(cardPlaceName, cardLink);
 //   }
 // }
-
-// let onLikeButton = () => elements.addEventListener('click', e => {
-//   let eventTarget = e.target;
-//   if(eventTarget.classList.contains('card__btn-like')) {
-//     eventTarget.classList.toggle('card__btn-like_active');
-//   };
-// })
-// onLikeButton();
 
 // let removeCard = () => elements.addEventListener('click', e => {
 //   let eventTarget = e.target;
