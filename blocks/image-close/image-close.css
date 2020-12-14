@@ -1,0 +1,11 @@
+.image-close {
+  top: -10px;
+  right: -25px;
+}
+
+@media screen and (min-width: 1280px) {
+  .image-close {
+    top: -25px;
+    right: -40px;
+  }
+}

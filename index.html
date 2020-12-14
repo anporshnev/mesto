@@ -13,6 +13,7 @@
       <img class="header__logo" src="./images/header_logo.svg" alt="Логотип Mesto Russia">
     </header>
     <main class="content">
+
       <section class="profile">
         <img class="profile__avatar" src="./images/header_avatar.jpg" alt="Изображение профиля">
         <div class="profile__wrap">
@@ -40,6 +41,7 @@
         </form>
       </div>
     </div>
+
     <div class="popup popup-card">
       <div class="popup__content">
         <h2 class="popup__title">Новое место</h2>
@@ -53,13 +55,15 @@
         </form>
       </div>
     </div>
-    <div class="popup">
-      <figure class="popup__content">
-        <button class="popup__icon-close"></button>
-        <img src="" alt="" class="popup__pic">
-        <figcaption class="popup__pic-title"></figcaption>
-      </figure>
+
+    <div class="popup popup-image popup_open">
+      <div class="popup__image-conteiner">
+        <button class="popup__icon-close image-close"></button>
+        <img src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="" class="popup__pic">
+        <h3 class="popup__pic-title">Архыз</h3>
+      </div>
     </div>
+
     <footer class="footer">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
