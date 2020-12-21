@@ -27,7 +27,6 @@ const popupPic = popupImage.querySelector('.popup__pic');
 const popupPicTitle = popupImage.querySelector('.popup__pic-title');
 
 const composeCard = ({name, link}) => {
-  cardTemplate;
   const newCard = cardTemplate.cloneNode(true);
 
   const cardImage = newCard.querySelector('.card__image');
