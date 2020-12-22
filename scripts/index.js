@@ -5,7 +5,6 @@ const profileInterests = document.querySelector('.profile__text-interests');
 const profileButtonClose = document.querySelector('.profile-close');
 const formProfile = document.querySelector('.form-profile');
 const formCard = document.querySelector('.form-card');
-const profileSubmitButton = formProfile.querySelector('.popup__submit');
 
 const popupProfile = document.querySelector('.popup-profile');
 const popupCard = document.querySelector('.popup-card');
@@ -23,7 +22,6 @@ const popupImage = document.querySelector('.popup-image');
 const popupImageClose = document.querySelector('.image-close');
 
 const cardTemplate = document.querySelector('#card').content;
-const cardSubmitButton = formCard.querySelector('.popup__submit');
 
 const popupPic = popupImage.querySelector('.popup__pic');
 const popupPicTitle = popupImage.querySelector('.popup__pic-title');
@@ -80,27 +78,21 @@ const handlePreviewPicture = data => {
 
 renderList();
 
-const openPopup = popup => {
+const openPopup = (popup) => {
   popup.classList.add('popup_open');
-  setButtonState(cardSubmitButton, false);
-  setButtonState(profileSubmitButton, true);
 };
 
 const closePopup = popup => {
   popup.classList.remove('popup_open');
-  clearErrorForm(formProfile);
-  clearErrorForm(formCard);
 };
 
 const handleProfileSubmit = e => {
-  // e.preventDefault();
   profileName.textContent = popupInputName.value;
   profileInterests.textContent = popupInputInterest.value;
   closePopup(popupProfile);
 };
 
 const handleCardSubmit = e => {
-  // e.preventDefault();
   addNewCard();
   closePopup(popupCard);
 };
@@ -109,17 +101,23 @@ profileButtonEdit.addEventListener('click', () => {
   popupInputName.value = profileName.textContent;
   popupInputInterest.value = profileInterests.textContent;
   openPopup(popupProfile);
+  const submitButton = popupProfile.querySelector(validationConfig.submitButtonSelector);
+  setButtonState(submitButton, true, validationConfig);
 });
 
 profileButtonAdd.addEventListener('click', () => {
   openPopup(popupCard);
+  const submitButton = popupCard.querySelector(validationConfig.submitButtonSelector);
+  setButtonState(submitButton, false, validationConfig);
 });
 
 profileButtonClose.addEventListener('click', () => {
+  clearErrorForm(formProfile, validationConfig);
   closePopup(popupProfile);
 });
 
 cardButtonClose.addEventListener('click', () => {
+  clearErrorForm(formCard, validationConfig);
   closePopup(popupCard);
   formCard.reset();
 });
