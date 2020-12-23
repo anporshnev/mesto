@@ -94,7 +94,7 @@ const closePopupEsc = e => {
   }
 };
 
-const clearErrors = (form) => {
+const clearErrorsForm = (form) => {
   const listMessageErrors = form.querySelectorAll('.popup__input-error');
   const listInputErrors = form.querySelectorAll('.popup__input');
 
@@ -106,13 +106,13 @@ const clearErrors = (form) => {
   });
 };
 
-const handleProfileSubmit = e => {
+const handleProfileSubmit = () => {
   profileName.textContent = popupInputName.value;
   profileInterests.textContent = popupInputInterest.value;
   closePopup(popupProfile);
 };
 
-const handleCardSubmit = e => {
+const handleCardSubmit = () => {
   addNewCard();
   closePopup(popupCard);
 };
@@ -120,7 +120,7 @@ const handleCardSubmit = e => {
 profileButtonEdit.addEventListener('click', () => {
   popupInputName.value = profileName.textContent;
   popupInputInterest.value = profileInterests.textContent;
-  clearErrors(formProfile);
+  clearErrorsForm(formProfile);
   const submitButton = popupProfile.querySelector(validationConfig.submitButtonSelector);
   setButtonState(submitButton, true, validationConfig);
   openPopup(popupProfile);
@@ -130,7 +130,7 @@ profileButtonAdd.addEventListener('click', () => {
   openPopup(popupCard);
   const submitButton = popupCard.querySelector(validationConfig.submitButtonSelector);
   setButtonState(submitButton, false, validationConfig);
-  clearErrors(formCard);
+  clearErrorsForm(formCard);
   formCard.reset();
 });
 
