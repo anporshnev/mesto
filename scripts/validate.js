@@ -10,18 +10,6 @@ const hideError = (form, input, config) => {
   input.classList.remove(config.inputErrorClass);
 };
 
-const clearErrorForm = (form, config) => {
-  const errorList = form.querySelectorAll(config.inputErrorSelector);
-  const inputList = form.querySelectorAll(config.inputSelector);
-
-  errorList.forEach(error => {
-    error.textContent = '';
-  })
-  inputList.forEach(input => {
-    input.classList.remove(config.inputErrorClass);
-  })
-};
-
 const checkInputValidity = (form, input, config) => {
   if(!input.validity.valid) {
     showError(form, input, config);
@@ -56,14 +44,14 @@ const enableValidation = (config) => {
   const forms = document.querySelectorAll(config.formSelector);
 
   forms.forEach(form => {
-    setEventListener(form, config)
+    setEventListener(form, config);
 
     form.addEventListener('submit', e => {
       e.preventDefault();
-    })
+    });
     const submitButton = form.querySelector(config.submitButtonSelector);
     setButtonState(submitButton, form.checkValidity(), config);
-  })
+  });
 };
 
 const validationConfig = {
@@ -72,7 +60,6 @@ const validationConfig = {
   submitButtonSelector: '.popup__submit',
   buttonInvalidClass: 'popup__submit_invalid',
   inputErrorClass: 'popup__input_type_error',
-  inputErrorSelector: '.popup__input-error',
 };
 
 enableValidation(validationConfig);
