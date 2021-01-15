@@ -27,46 +27,50 @@ const popupPic = popupImage.querySelector('.popup__pic');
 const popupPicTitle = popupImage.querySelector('.popup__pic-title');
 
 
+import  Card  from './Card.js';
+import {initialCards} from './initial-arr.js';
 
-const composeCard = ({name, link}) => {
-  const newCard = cardTemplate.cloneNode(true);
 
-  const cardImage = newCard.querySelector('.card__image');
-  const cardTitle = newCard.querySelector('.card__title');
-  const cardButtonLike = newCard.querySelector('.card__btn-like');
-  const cardButtonRemove = newCard.querySelector('.card__btn-remove');
 
-  cardImage.src = link;
-  cardTitle.textContent = name;
-  cardImage.alt = `Изображение места ${name}`;
+// const composeCard = ({name, link}) => {
+//   const newCard = cardTemplate.cloneNode(true);
 
-  cardButtonLike.addEventListener('click', handleLikeIcon);
-  cardButtonRemove.addEventListener('click', handleDeleteCard);
-  cardImage.addEventListener('click', () => {
-    handlePreviewPicture({name, link});
-  });
+//   const cardImage = newCard.querySelector('.card__image');
+//   const cardTitle = newCard.querySelector('.card__title');
+//   const cardButtonLike = newCard.querySelector('.card__btn-like');
+//   const cardButtonRemove = newCard.querySelector('.card__btn-remove');
 
-  return newCard;
-};
+//   cardImage.src = link;
+//   cardTitle.textContent = name;
+//   cardImage.alt = `Изображение места ${name}`;
 
-const renderList =() => {
-  const cardItems = initialCards.map(composeCard);
-  elements.append(...cardItems);
-};
+//   cardButtonLike.addEventListener('click', handleLikeIcon);
+//   cardButtonRemove.addEventListener('click', handleDeleteCard);
+//   cardImage.addEventListener('click', () => {
+//     handlePreviewPicture({name, link});
+//   });
 
-const addNewCard = () => {
-  const newCard = composeCard({name: popupInputPlaceName.value, link: popupInputImageLink.value});
-  elements.prepend(newCard);
-  formCard.reset();
-};
+//   return newCard;
+// };
 
-const handleLikeIcon = e => {
-  e.target.classList.toggle('card__btn-like_active');
-};
+// const renderList =() => {
+//   const cardItems = initialCards.map(composeCard);
+//   elements.append(...cardItems);
+// };
 
-const handleDeleteCard = e => {
-  e.target.closest('.card').remove();
-};
+// const addNewCard = () => {
+//   const newCard = composeCard({name: popupInputPlaceName.value, link: popupInputImageLink.value});
+//   elements.prepend(newCard);
+//   formCard.reset();
+// };
+
+// const handleLikeIcon = e => {
+//   e.target.classList.toggle('card__btn-like_active');
+// };
+
+// const handleDeleteCard = e => {
+//   e.target.closest('.card').remove();
+// };
 
 const handlePreviewPicture = data => {
   popupPic.src = data.link;
@@ -75,9 +79,16 @@ const handlePreviewPicture = data => {
   openPopup(popupImage);
 };
 
-renderList();
+// const handlePreviewPicture = (link, name) => {
+//   popupPic.src = link;
+//   popupPicTitle.textContent = name;
+//   popupPic.alt = `Изображение места ${name}`;
+//   openPopup(popupImage);
+// };
 
-const openPopup = (popup) => {
+// renderList();
+
+const openPopup = popup => {
   popup.classList.add('popup_open');
   document.addEventListener('keydown', closePopupEsc);
 };
@@ -112,10 +123,10 @@ const handleProfileSubmit = () => {
   closePopup(popupProfile);
 };
 
-const handleCardSubmit = () => {
-  addNewCard();
-  closePopup(popupCard);
-};
+// const handleCardSubmit = () => {
+//   addNewCard();
+//   closePopup(popupCard);
+// };
 
 profileButtonEdit.addEventListener('click', () => {
   popupInputName.value = profileName.textContent;
@@ -157,9 +168,14 @@ popupImage.addEventListener('click', e => {
 
 formProfile.addEventListener('submit', handleProfileSubmit);
 
-formCard.addEventListener('submit', handleCardSubmit);
+// formCard.addEventListener('submit', handleCardSubmit);
 
+initialCards.forEach(item => {
+  const card = new Card(item, '.card-template_type_default', handlePreviewPicture);
+  const cardElement = card.generateCard();
 
+  elements.append(cardElement);
+})
 
 
 
