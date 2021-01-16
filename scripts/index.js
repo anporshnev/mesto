@@ -21,7 +21,7 @@ const elements = document.querySelector('.elements');
 const popupImage = document.querySelector('.popup-image');
 // const popupImageClose = document.querySelector('.image-close');
 
-const cardTemplate = document.querySelector('#card').content;
+//const cardTemplate = document.querySelector('#card').content;
 
 const popupPic = popupImage.querySelector('.popup__pic');
 const popupPicTitle = popupImage.querySelector('.popup__pic-title');
@@ -30,7 +30,32 @@ const popupPicTitle = popupImage.querySelector('.popup__pic-title');
 import  Card  from './Card.js';
 import {initialCards} from './initial-arr.js';
 
+const handlePreviewPicture = data => {
+  popupPic.src = data.link;
+  popupPicTitle.textContent = data.name;
+  popupPic.alt = `Изображение места ${data.name}`;
+  openPopup(popupImage);
+};
 
+const renderCards = () => initialCards.forEach(item => {
+  const card = new Card(item, '.card-template_type_default', handlePreviewPicture);
+  const cardElement = card.generateCard();
+
+  elements.append(cardElement);
+})
+
+renderCards();
+
+const addNewCard = () => {
+  const objDataInput = {
+    name: popupInputPlaceName.value,
+    link: popupInputImageLink.value
+  }
+  const card = new Card(objDataInput, '.card-template_type_default', handlePreviewPicture);
+  const cardElement = card.generateCard();
+  elements.prepend(cardElement);
+  formCard.reset();
+};
 
 // const composeCard = ({name, link}) => {
 //   const newCard = cardTemplate.cloneNode(true);
@@ -71,13 +96,6 @@ import {initialCards} from './initial-arr.js';
 // const handleDeleteCard = e => {
 //   e.target.closest('.card').remove();
 // };
-
-const handlePreviewPicture = data => {
-  popupPic.src = data.link;
-  popupPicTitle.textContent = data.name;
-  popupPic.alt = `Изображение места ${data.name}`;
-  openPopup(popupImage);
-};
 
 // const handlePreviewPicture = (link, name) => {
 //   popupPic.src = link;
@@ -123,10 +141,10 @@ const handleProfileSubmit = () => {
   closePopup(popupProfile);
 };
 
-// const handleCardSubmit = () => {
-//   addNewCard();
-//   closePopup(popupCard);
-// };
+const handleCardSubmit = () => {
+  addNewCard();
+  closePopup(popupCard);
+};
 
 profileButtonEdit.addEventListener('click', () => {
   popupInputName.value = profileName.textContent;
@@ -168,14 +186,9 @@ popupImage.addEventListener('click', e => {
 
 formProfile.addEventListener('submit', handleProfileSubmit);
 
-// formCard.addEventListener('submit', handleCardSubmit);
+formCard.addEventListener('submit', handleCardSubmit);
 
-initialCards.forEach(item => {
-  const card = new Card(item, '.card-template_type_default', handlePreviewPicture);
-  const cardElement = card.generateCard();
 
-  elements.append(cardElement);
-})
 
 
 

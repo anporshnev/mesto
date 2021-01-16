@@ -1,3 +1,22 @@
+export default class FormValidator {
+
+  constructor (validationConfig, formSelector) {
+    this._formSelector = validationConfig.formSelector;
+    this._inputSelector = validationConfig.inputSelector;
+    this._submitButtonSelector = validationConfig.submitButtonSelector;
+    this._buttonInvalidClass = validationConfig.buttonInvalidClass;
+    this._inputErrorClass = validationConfig.inputErrorClass;
+    this._formSelector = formSelector;
+  }
+
+
+
+}
+
+
+
+
+
 const showError = (form, input, config) => {
   const inputError = form.querySelector(`#${input.id}-error`);
   inputError.textContent = input.validationMessage;

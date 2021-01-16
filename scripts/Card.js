@@ -1,4 +1,5 @@
 export default class Card {
+
   constructor(data, cardSelector, handlePreviewPicture) {
     this._name = data.name;
     this._link = data.link;
@@ -38,7 +39,8 @@ export default class Card {
     this._element.querySelector('.card__image').addEventListener('click', () => {
       const objDescription = {
         name: this._name,
-        link: this._link}
+        link: this._link
+      }
       this._handlePreviewPicture(objDescription);
     });
   }
