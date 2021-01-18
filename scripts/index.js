@@ -46,7 +46,7 @@ const renderCards = () => initialCards.forEach(item => {
 renderCards();
 
 const addNewCard = () => {
-  //Объект создан на случай увеличения полей ввода
+  //Объект создан на случай увеличения количества полей ввода
   const objDataInput = {
     name: popupInputPlaceName.value,
     link: popupInputImageLink.value
@@ -79,18 +79,6 @@ const closePopupEsc = e => {
     closePopup(popupActive);
   }
 };
-
-// const clearErrorsForm = (form) => {
-//   const listMessageErrors = form.querySelectorAll('.popup__input-error');
-//   const listInputErrors = form.querySelectorAll('.popup__input');
-
-//   listMessageErrors.forEach(message => {
-//     message.textContent = '';
-//   });
-//   listInputErrors.forEach(input => {
-//     input.classList.remove('popup__input_type_error');
-//   });
-// };
 
 const handleProfileSubmit = () => {
   profileName.textContent = popupInputName.value;

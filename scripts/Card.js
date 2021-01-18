@@ -37,7 +37,7 @@ export default class Card {
     });
 
     this._element.querySelector('.card__image').addEventListener('click', () => {
-      //Объект создан на случай увеличения элементов описания
+      //Объект создан на случай увеличения количества элементов описания
       const objDescription = {
         name: this._name,
         link: this._link
