@@ -17,6 +17,7 @@ const popupInputImageLink = document.querySelector('.popup__input_content_image-
 
 const elements = document.querySelector('.elements');
 
+
 const popupImage = document.querySelector('.popup-image');
 
 const popupPic = popupImage.querySelector('.popup__pic');
@@ -41,7 +42,8 @@ const createInstanceCard = (data, templateSelector) => {
 }
 
 const renderCards = () => initialCards.forEach(item => {
-  elements.append(createInstanceCard(item,'.card-template_type_default'));
+  const cardTemplateSelector = '.card-template_type_default';
+  elements.append(createInstanceCard(item, cardTemplateSelector));
 })
 renderCards();
 
@@ -51,7 +53,8 @@ const addNewCard = () => {
     name: popupInputPlaceName.value,
     link: popupInputImageLink.value
   }
-  elements.prepend(createInstanceCard(objDataInput, '.card-template_type_default'));
+  const cardTemplateSelector = '.card-template_type_default';
+  elements.prepend(createInstanceCard(objDataInput, cardTemplateSelector));
   formCard.reset();
 };
 
