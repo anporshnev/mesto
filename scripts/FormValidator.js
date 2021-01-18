@@ -17,6 +17,18 @@ export class FormValidator {
     input.classList.remove(this._config.inputErrorClass);
   };
 
+  clearErrorsForm(form) {
+    const listMessageErrors = form.querySelectorAll(this._config.inputErrorSelector);
+    const listInputErrors = form.querySelectorAll(this._config.inputSelector);
+
+    listMessageErrors.forEach(message => {
+      message.textContent = '';
+    });
+    listInputErrors.forEach(input => {
+      input.classList.remove(this._config.inputErrorClass);
+    });
+  };
+
   _checkInputValidity(form, input) {
     if(!input.validity.valid) {
       this._showError(form, input);
@@ -63,7 +75,8 @@ export class FormValidator {
 export const validationConfig = {
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__submit',
+  inputErrorSelector: '.popup__input-error',
   buttonInvalidClass: 'popup__submit_invalid',
-  inputErrorClass: 'popup__input_type_error',
+  inputErrorClass: 'popup__input_type_error'
 };
 
