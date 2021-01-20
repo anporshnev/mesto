@@ -19,9 +19,10 @@ export default class Card {
 
   generateCard() {
     this._element = this._getTemplate();
+    this._cardImage = this._element.querySelector('.card__image');
     this._element.querySelector('.card__title').textContent = this._name;
-    this._element.querySelector('.card__image').src = this._link;
-    this._element.querySelector('.card__image').alt = `Изображение места ${this._name}`;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = `Изображение места ${this._name}`;
 
     this._setEventListeners();
 
@@ -37,7 +38,7 @@ export default class Card {
       this._handleDeleteCard();
     });
 
-    this._element.querySelector('.card__image').addEventListener('click', () => {
+    this._cardImage.addEventListener('click', () => {
       //Объект создан на случай увеличения количества элементов описания
       const objDescription = {
         name: this._name,
