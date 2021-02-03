@@ -17,6 +17,8 @@ const popupInputImageLink = document.querySelector('.popup__input_content_image-
 
 const elements = document.querySelector('.elements');
 
+const cardSection = '.elements';
+
 
 const popupImage = document.querySelector('.popup-image');
 
@@ -26,6 +28,7 @@ const popupPicTitle = popupImage.querySelector('.popup__pic-title');
 const cardTemplateSelector = '.card-template_type_default';
 
 import  Card  from '../components/Card.js';
+import Section from '../components/Section.js';
 import {initialCards} from '../components/initial-arr.js';
 
 const handlePreviewPicture = data => {
@@ -36,16 +39,30 @@ const handlePreviewPicture = data => {
 };
 
 // templateSelector добавлен на случай если будет несколько типов карточек
-const createInstanceCard = (data, templateSelector) => {
-  const card = new Card(data, templateSelector, handlePreviewPicture);
-  const cardElement = card.generateCard();
-  return cardElement;
-}
+// const createInstanceCard = (data, templateSelector) => {
+//   const card = new Card(data, templateSelector, handlePreviewPicture);
+//   const cardElement = card.generateCard();
+//   return cardElement;
+// }
 
-const renderCards = () => initialCards.forEach(item => {
-  elements.append(createInstanceCard(item, cardTemplateSelector));
-})
-renderCards();
+// const renderCards = () => initialCards.forEach(item => {
+//   elements.append(createInstanceCard(item, cardTemplateSelector));
+// })
+// renderCards();
+
+const renderCards = new Section ({
+  items: initialCards,
+  renderer: (item) => {
+    const card = new Card(item, cardTemplateSelector, handlePreviewPicture);
+    const cardElement = card.generateCard();
+
+    renderCards.addItem(cardElement);
+    },
+  },
+  cardSection
+);
+
+renderCards.renderItems();
 
 const addNewCard = () => {
   //Объект создан на случай увеличения количества полей ввода
@@ -65,22 +82,22 @@ validationFormProfile.enableValidation();
 const validationFormCard = new FormValidator(validationConfig, '.form-card');
 validationFormCard.enableValidation();
 
-const openPopup = popup => {
-  popup.classList.add('popup_open');
-  document.addEventListener('keydown', closePopupEsc);
-};
+// const openPopup = popup => {
+//   popup.classList.add('popup_open');
+//   document.addEventListener('keydown', closePopupEsc);
+// };
 
-const closePopup = popup => {
-  popup.classList.remove('popup_open');
-  document.removeEventListener('keydown', closePopupEsc);
-};
+// const closePopup = popup => {
+//   popup.classList.remove('popup_open');
+//   document.removeEventListener('keydown', closePopupEsc);
+// };
 
-const closePopupEsc = e => {
-  const popupActive = document.querySelector('.popup_open');
-  if(e.key === 'Escape' && popupActive !== null) {
-    closePopup(popupActive);
-  }
-};
+// const closePopupEsc = e => {
+//   const popupActive = document.querySelector('.popup_open');
+//   if(e.key === 'Escape' && popupActive !== null) {
+//     closePopup(popupActive);
+//   }
+// };
 
 const handleProfileSubmit = () => {
   profileName.textContent = popupInputName.value;
@@ -110,26 +127,26 @@ profileButtonAdd.addEventListener('click', () => {
   formCard.reset();
 });
 
-// Закрытие попапа шелчком по оверлею и по крестику
-popupProfile.addEventListener('click', e => {
-  if(!e.target.closest('.popup__content') || e.target.classList.contains('popup__icon-close')) {
-    closePopup(popupProfile);
-  }
-})
+// // Закрытие попапа шелчком по оверлею и по крестику
+// popupProfile.addEventListener('click', e => {
+//   if(!e.target.closest('.popup__content') || e.target.classList.contains('popup__icon-close')) {
+//     closePopup(popupProfile);
+//   }
+// })
 
-// Закрытие попапа шелчком по оверлею и по крестику
-popupCard.addEventListener('click', e => {
-  if(!e.target.closest('.popup__content') || e.target.classList.contains('popup__icon-close')) {
-    closePopup(popupCard);
-  }
-})
+// // Закрытие попапа шелчком по оверлею и по крестику
+// popupCard.addEventListener('click', e => {
+//   if(!e.target.closest('.popup__content') || e.target.classList.contains('popup__icon-close')) {
+//     closePopup(popupCard);
+//   }
+// })
 
-// Закрытие попапа шелчком по оверлею и по крестику
-popupImage.addEventListener('click', e => {
-  if(!e.target.closest('.popup__image-conteiner') || e.target.classList.contains('popup__icon-close')) {
-    closePopup(popupImage);
-  }
-})
+// // Закрытие попапа шелчком по оверлею и по крестику
+// popupImage.addEventListener('click', e => {
+//   if(!e.target.closest('.popup__image-conteiner') || e.target.classList.contains('popup__icon-close')) {
+//     closePopup(popupImage);
+//   }
+// })
 
 formProfile.addEventListener('submit', handleProfileSubmit);
 
