@@ -2,7 +2,6 @@ export default class Popup {
   constructor (popupSelector) {
     this._popupSelector = popupSelector;
     this._popup = document.querySelector(popupSelector);
-
   }
 
   open() {
@@ -11,11 +10,13 @@ export default class Popup {
 
   close() {
     this._popup.classList.remove('popup_open');
+
   }
 
   _handleEscClose(e) {
-    if(e.key === 'Escape') {
-      this.close()
+    const popupActive = document.querySelector('.popup_open');
+    if(e.key === 'Escape' && popupActive !== null) {
+      popupActive.classList.remove('popup_open');
     }
   }
 
@@ -27,6 +28,6 @@ export default class Popup {
     });
 
     document.addEventListener('keydown', this._handleEscClose);
-
   }
 }
+

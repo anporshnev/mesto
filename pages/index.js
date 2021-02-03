@@ -1,3 +1,4 @@
+
 const profileButtonEdit = document.querySelector('.profile__btn-edit');
 const profileButtonAdd = document.querySelector('.profile__btn-add');
 const profileName = document.querySelector('.profile__name');
@@ -30,6 +31,7 @@ const cardTemplateSelector = '.card-template_type_default';
 import  Card  from '../components/Card.js';
 import Section from '../components/Section.js';
 import {initialCards} from '../components/initial-arr.js';
+import Popup from '../components/Popup.js';
 
 const handlePreviewPicture = data => {
   popupPic.src = data.link;
@@ -76,6 +78,7 @@ const addNewCard = () => {
 
 import {FormValidator, validationConfig} from '../components/FormValidator.js';
 
+
 const validationFormProfile = new FormValidator(validationConfig, '.form-profile');
 validationFormProfile.enableValidation();
 
@@ -116,7 +119,10 @@ profileButtonEdit.addEventListener('click', () => {
   validationFormProfile.clearErrorsForm(formProfile);
   const submitButton = popupProfile.querySelector('.popup__submit');
   validationFormProfile.setButtonState(submitButton, true);
-  openPopup(popupProfile);
+  // openPopup(popupProfile);
+  const profilePopup = new Popup ('.popup-profile');
+  profilePopup.open();
+  profilePopup.setEventListeners();
 });
 
 profileButtonAdd.addEventListener('click', () => {
