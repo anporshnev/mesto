@@ -1,3 +1,5 @@
+import {popupImageSelector} from '../utils/constants.js';
+
 export default class Card {
 
   constructor(data, cardSelector, handlePreviewPicture) {
@@ -44,7 +46,8 @@ export default class Card {
         name: this._name,
         link: this._link
       }
-      this._handlePreviewPicture(objDescription);
+      // this._handlePreviewPicture(objDescription);
+      this._handlePreviewPicture(objDescription, popupImageSelector);
     });
   }
 

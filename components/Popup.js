@@ -22,7 +22,9 @@ export default class Popup {
 
   setEventListeners() {
     this._popup.addEventListener('click', e => {
-      if(!e.target.closest('.popup__content') || e.target.classList.contains('popup__icon-close')) {
+      if(!e.target.closest('.popup__content')
+      && !e.target.closest('.popup__image-conteiner')
+      || e.target.classList.contains('popup__icon-close')) {
         this.close();
       }
     });

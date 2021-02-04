@@ -18,13 +18,16 @@ const popupInputImageLink = document.querySelector('.popup__input_content_image-
 
 const elements = document.querySelector('.elements');
 
-const cardSection = '.elements';
+// const cardSection = '.elements';
+import {
+  cardSectionSelector
+} from '../utils/constants.js';
 
 
-const popupImage = document.querySelector('.popup-image');
+// const popupImage = document.querySelector('.popup-image');
 
-const popupPic = popupImage.querySelector('.popup__pic');
-const popupPicTitle = popupImage.querySelector('.popup__pic-title');
+// const popupPic = popupImage.querySelector('.popup__pic');
+// const popupPicTitle = popupImage.querySelector('.popup__pic-title');
 
 const cardTemplateSelector = '.card-template_type_default';
 
@@ -32,13 +35,21 @@ import  Card  from '../components/Card.js';
 import Section from '../components/Section.js';
 import {initialCards} from '../components/initial-arr.js';
 import Popup from '../components/Popup.js';
+import PopupWithImage from '../components/PopupWithImage.js';
 
-const handlePreviewPicture = data => {
-  popupPic.src = data.link;
-  popupPicTitle.textContent = data.name;
-  popupPic.alt = `Изображение места ${data.name}`;
-  openPopup(popupImage);
-};
+const handlePreviewPicture = (data, popupSelector) => {
+  const popupImage = new PopupWithImage (data, popupSelector);
+  popupImage.open();
+  popupImage.setEventListeners();
+}
+
+
+// const handlePreviewPicture = data => {
+//   popupPic.src = data.link;
+//   popupPicTitle.textContent = data.name;
+//   popupPic.alt = `Изображение места ${data.name}`;
+//   openPopup(popupImage);
+// };
 
 // templateSelector добавлен на случай если будет несколько типов карточек
 // const createInstanceCard = (data, templateSelector) => {
@@ -61,7 +72,7 @@ const renderCards = new Section ({
     renderCards.addItem(cardElement);
     },
   },
-  cardSection
+  cardSectionSelector
 );
 
 renderCards.renderItems();
