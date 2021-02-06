@@ -7,6 +7,9 @@ const formProfileSelector = '.form-profile';
 const formCardSelector = '.form-card';
 
 const formProfile = document.querySelector('.form-profile');
+const formCard = document.querySelector('.form-card');
+const popupCard = document.querySelector('.popup-card');
+
 
 
 export {
@@ -18,5 +21,7 @@ export {
   formProfileSelector,
   formCardSelector,
 
-  formProfile
+  formProfile,
+  formCard,
+  popupCard
 };

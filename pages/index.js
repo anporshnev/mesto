@@ -7,12 +7,11 @@ const profileInterests = document.querySelector('.profile__text-interests');
 
 
 const popupProfile = document.querySelector('.popup-profile');
-const popupCard = document.querySelector('.popup-card');
+
 
 const popupInputName = document.querySelector('.popup__input_content_username');
 const popupInputInterest = document.querySelector('.popup__input_content_about');
 
-// const cardSection = '.elements';
 import {
   cardSectionSelector,
   cardTemplateSelector,
@@ -21,13 +20,10 @@ import {
   formProfileSelector,
   formCardSelector,
 
-  formProfile
+  formProfile,
+  formCard,
+  popupCard
 } from '../utils/constants.js';
-
-// const popupImage = document.querySelector('.popup-image');
-
-// const popupPic = popupImage.querySelector('.popup__pic');
-// const popupPicTitle = popupImage.querySelector('.popup__pic-title');
 
 import  Card  from '../components/Card.js';
 import Section from '../components/Section.js';
@@ -35,6 +31,7 @@ import {initialCards} from '../components/initial-arr.js';
 import Popup from '../components/Popup.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import {FormValidator, validationConfig} from '../components/FormValidator.js';
 
 const handlePreviewPicture = (data, popupSelector) => {
   const popupImage = new PopupWithImage (data, popupSelector);
@@ -69,21 +66,6 @@ const addNewCard = new PopupWithForm(
 );
 
 addNewCard.setEventListener();
-
-
-
-// const addNewCard = () => {
-//   //Объект создан на случай увеличения количества полей ввода
-//   const objDataInput = {
-//     name: popupInputPlaceName.value,
-//     link: popupInputImageLink.value
-//   }
-//   elements.prepend(createInstanceCard(objDataInput, cardTemplateSelector));
-//   formCard.reset();
-// };
-
-import {FormValidator, validationConfig} from '../components/FormValidator.js';
-
 
 const validationFormProfile = new FormValidator(validationConfig, formProfileSelector);
 validationFormProfile.enableValidation();
@@ -133,11 +115,9 @@ profileButtonEdit.addEventListener('click', () => {
 
 profileButtonAdd.addEventListener('click', () => {
   addNewCard.open();
-
-
-  // const submitButton = popupCard.querySelector('.popup__submit');
-  // validationFormCard.setButtonState(submitButton, false);
-  // validationFormCard.clearErrorsForm(formCard);
+  const submitButton = popupCard.querySelector('.popup__submit');
+  validationFormCard.setButtonState(submitButton, false);
+  validationFormCard.clearErrorsForm(formCard);
 });
 
 // // Закрытие попапа шелчком по оверлею и по крестику
