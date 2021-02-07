@@ -47,7 +47,7 @@ export class FormValidator {
     }
   };
 
-  _setEventListener(form) {
+  _setEventListeners(form) {
     const inputList = form.querySelectorAll(this._config.inputSelector);
     const submitButton = form.querySelector(this._config.submitButtonSelector);
 
@@ -61,7 +61,7 @@ export class FormValidator {
 
   enableValidation() {
     const form = document.querySelector(this._formSelector);
-      this._setEventListener(form);
+      this._setEventListeners(form);
 
       form.addEventListener('submit', e => {
         e.preventDefault();

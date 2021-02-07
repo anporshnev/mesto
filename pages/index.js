@@ -25,11 +25,12 @@ import {
 import  Card  from '../components/Card.js';
 import Section from '../components/Section.js';
 import {initialCards} from '../components/initial-arr.js';
-import Popup from '../components/Popup.js';
+// import Popup from '../components/Popup.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import {FormValidator, validationConfig} from '../components/FormValidator.js';
 import UserInfo from '../components/UserInfo.js';
+
 
 const profileInfo = new UserInfo(profileSelectors);
 
@@ -65,17 +66,18 @@ const addNewCard = new PopupWithForm(
   }
 );
 
-addNewCard.setEventListener();
+addNewCard.setEventListeners();
 
-// const test = new PopupWithForm(
-//   formProfileSelector, {
-//     handleFormSubmit: (dataForm) => {
-//       profileInfo.setUserInfo(dataForm);
-//     }
-//   }
-// )
-// test.setEventListeners();
+const newInfoProfile = new PopupWithForm(
+  popupProfileSelector, {
+    handleFormSubmit: (dataForm) => {
+      profileInfo.setUserInfo(dataForm);
+      newInfoProfile.close();
+    }
+  }
+);
 
+newInfoProfile.setEventListeners();
 
 const validationFormProfile = new FormValidator(validationConfig, formProfileSelector);
 validationFormProfile.enableValidation();
@@ -92,9 +94,7 @@ profileButtonEdit.addEventListener('click', () => {
   const submitButton = popupProfile.querySelector('.popup__submit');
   validationFormProfile.setButtonState(submitButton, true);
 
-  const profilePopup = new Popup (popupProfileSelector);
-  profilePopup.open();
-  profilePopup.setEventListeners();
+  newInfoProfile.open();
 });
 
 profileButtonAdd.addEventListener('click', () => {
