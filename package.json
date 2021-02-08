@@ -1,0 +1,36 @@
+{
+  "name": "mesto",
+  "version": "1.0.0",
+  "description": "Project Mesto",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anporshnev/mesto.git"
+  },
+  "author": "Andrew Porshnev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anporshnev/mesto/issues"
+  },
+  "homepage": "https://github.com/anporshnev/mesto#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.13",
+    "@babel/preset-env": "^7.12.13",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^5.0.2",
+    "html-webpack-plugin": "^5.0.0",
+    "mini-css-extract-plugin": "^1.3.6",
+    "rimraf": "^3.0.2",
+    "webpack": "^5.21.2",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "core-js": "^3.8.3"
+  }
+}
