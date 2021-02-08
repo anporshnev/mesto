@@ -2,21 +2,22 @@ export default class Popup {
   constructor (popupSelector) {
     this._popupSelector = popupSelector;
     this._popup = document.querySelector(popupSelector);
+    this._handleEscClose = this._handleEscClose.bind(this);
   }
 
   open() {
     this._popup.classList.add('popup_open');
+    document.addEventListener('keydown', this._handleEscClose);
   };
 
   close() {
     this._popup.classList.remove('popup_open');
-
+    document.removeEventListener('keydown', this._handleEscClose);
   }
 
   _handleEscClose(e) {
-    const popupActive = document.querySelector('.popup_open');
-    if(e.key === 'Escape' && popupActive !== null) {
-      popupActive.classList.remove('popup_open');
+    if (e.key === 'Escape') {
+      this.close();
     }
   }
 
@@ -28,8 +29,6 @@ export default class Popup {
         this.close();
       }
     });
-
-    document.addEventListener('keydown', this._handleEscClose);
   }
 }
 

@@ -20,6 +20,3 @@ export default class UserInfo {
   }
 }
 
-// const test = new UserInfo({usernameSelector:'.profile__name', aboutSelector:'.profile__text-interests'})
-
-// console.log(test.getUserInfo())

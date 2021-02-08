@@ -17,6 +17,9 @@ const popupCard = document.querySelector('.popup-card');
 const popupProfile = document.querySelector('.popup-profile');
 const popupInputName = document.querySelector('.popup__input_content_username');
 const popupInputInterest = document.querySelector('.popup__input_content_about');
+const profileButtonEdit = document.querySelector('.profile__btn-edit');
+const profileButtonAdd = document.querySelector('.profile__btn-add');
+
 
 
 
@@ -35,5 +38,7 @@ export {
   popupCard,
   popupInputName,
   popupInputInterest,
-  popupProfile
+  popupProfile,
+  profileButtonEdit,
+  profileButtonAdd
 };

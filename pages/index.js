@@ -1,10 +1,3 @@
-
-const profileButtonEdit = document.querySelector('.profile__btn-edit');
-const profileButtonAdd = document.querySelector('.profile__btn-add');
-const profileName = document.querySelector('.profile__name');
-const profileInterests = document.querySelector('.profile__text-interests');
-
-
 import {
   cardSectionSelector,
   cardTemplateSelector,
@@ -19,13 +12,15 @@ import {
   popupCard,
   popupInputName,
   popupInputInterest,
-  popupProfile
+  popupProfile,
+  profileButtonEdit,
+  profileButtonAdd
+
 } from '../utils/constants.js';
 
 import  Card  from '../components/Card.js';
 import Section from '../components/Section.js';
-import {initialCards} from '../components/initial-arr.js';
-// import Popup from '../components/Popup.js';
+import {initialCards} from '../utils/initial-arr.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import {FormValidator, validationConfig} from '../components/FormValidator.js';
@@ -40,14 +35,17 @@ const handlePreviewPicture = (data, popupSelector) => {
   popupImage.setEventListeners();
 }
 
+const createInstanceCard = item => {
+  const card = new Card(item, cardTemplateSelector, handlePreviewPicture);
+  const cardElement = card.generateCard();
+
+  renderCards.addItem(cardElement);
+}
+
 const renderCards = new Section ({
   items: initialCards,
-  renderer: (item) => {
-    const card = new Card(item, cardTemplateSelector, handlePreviewPicture);
-    const cardElement = card.generateCard();
-
-    renderCards.addItem(cardElement);
-    },
+  renderer: (item) =>
+  createInstanceCard(item),
   },
   cardSectionSelector
 );
@@ -57,10 +55,7 @@ renderCards.renderItems();
 const addNewCard = new PopupWithForm(
   popupCardSelector, {
     handleFormSubmit: (dataForm) => {
-      const card = new Card(dataForm, cardTemplateSelector, handlePreviewPicture);
-      const cardElement = card.generateCard();
-
-      renderCards.addItem(cardElement);
+      createInstanceCard(dataForm);
       addNewCard.close();
     }
   }
@@ -99,6 +94,7 @@ profileButtonEdit.addEventListener('click', () => {
 
 profileButtonAdd.addEventListener('click', () => {
   addNewCard.open();
+
   const submitButton = popupCard.querySelector('.popup__submit');
   validationFormCard.setButtonState(submitButton, false);
   validationFormCard.clearErrorsForm(formCard);
