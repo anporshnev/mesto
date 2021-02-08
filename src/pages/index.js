@@ -1,4 +1,4 @@
-import './pages/index.css';
+import './index.css';
 
 import {
   cardSectionSelector,
@@ -18,15 +18,15 @@ import {
   profileButtonEdit,
   profileButtonAdd
 
-} from './utils/constants.js';
+} from '../utils/constants.js';
 
-import  Card  from './components/Card.js';
-import Section from './components/Section.js';
-import {initialCards} from './utils/initial-arr.js';
-import PopupWithImage from './components/PopupWithImage.js';
-import PopupWithForm from './components/PopupWithForm.js';
-import {FormValidator, validationConfig} from './components/FormValidator.js';
-import UserInfo from './components/UserInfo.js';
+import  Card  from '../components/Card.js';
+import Section from '../components/Section.js';
+import {initialCards} from '../utils/initial-arr.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import {FormValidator, validationConfig} from '../components/FormValidator.js';
+import UserInfo from '../components/UserInfo.js';
 
 
 const profileInfo = new UserInfo(profileSelectors);
