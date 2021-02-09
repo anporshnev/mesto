@@ -5,6 +5,7 @@ import {
   cardTemplateSelector,
   popupProfileSelector,
   popupCardSelector,
+  popupImageSelector,
   formProfileSelector,
   formCardSelector,
   profileSelectors,
@@ -27,33 +28,36 @@ import UserInfo from '../components/UserInfo.js';
 
 const profileInfo = new UserInfo(profileSelectors);
 
-const handlePreviewPicture = (data, popupSelector) => {
-  const popupImage = new PopupWithImage (data, popupSelector);
-  popupImage.open();
-  popupImage.setEventListeners();
-}
+const popupImage = new PopupWithImage(popupImageSelector);
+popupImage.setEventListeners();
+
+const handlePreviewPicture = data => {
+  popupImage.open(data.name, data.link);
+};
 
 const createInstanceCard = item => {
   const card = new Card(item, cardTemplateSelector, handlePreviewPicture);
   const cardElement = card.generateCard();
 
-  renderCards.addItem(cardElement);
+  return cardElement;
 }
 
 const renderCards = new Section ({
   items: initialCards,
-  renderer: (item) =>
-  createInstanceCard(item),
-  },
-  cardSectionSelector
-);
+  renderer: (item) => {
+    const cardElement = createInstanceCard(item);
+    renderCards.addItem(cardElement);
+  }
+},
+cardSectionSelector);
 
 renderCards.renderItems();
 
 const addNewCard = new PopupWithForm(
   popupCardSelector, {
     handleFormSubmit: (dataForm) => {
-      createInstanceCard(dataForm);
+      const cardElement = createInstanceCard(dataForm);
+      renderCards.prependItem(cardElement);
       addNewCard.close();
     }
   }

@@ -1,5 +1,3 @@
-import {popupImageSelector} from '../utils/constants.js';
-
 export default class Card {
 
   constructor({name, link}, cardSelector, handlePreviewPicture) {
@@ -41,13 +39,11 @@ export default class Card {
     });
 
     this._cardImage.addEventListener('click', () => {
-      //Объект создан на случай увеличения количества элементов описания
-      const objDescription = {
+      const data = {
         name: this._name,
         link: this._link
       }
-      // this._handlePreviewPicture(objDescription);
-      this._handlePreviewPicture(objDescription, popupImageSelector);
+      this._handlePreviewPicture(data);
     });
   }
 
