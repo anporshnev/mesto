@@ -9,12 +9,8 @@ import {
   formCardSelector,
   profileSelectors,
 
-  formProfile,
-  formCard,
-  popupCard,
   popupInputName,
   popupInputInterest,
-  popupProfile,
   profileButtonEdit,
   profileButtonAdd
 
@@ -87,9 +83,8 @@ profileButtonEdit.addEventListener('click', () => {
   popupInputName.value = getUserInfo.name;
   popupInputInterest.value = getUserInfo.about;
 
-  validationFormProfile.clearErrorsForm(formProfile);
-  const submitButton = popupProfile.querySelector('.popup__submit');
-  validationFormProfile.setButtonState(submitButton, true);
+  validationFormProfile.clearErrorsForm();
+  validationFormProfile.enableSubmitButton();
 
   newInfoProfile.open();
 });
@@ -97,9 +92,8 @@ profileButtonEdit.addEventListener('click', () => {
 profileButtonAdd.addEventListener('click', () => {
   addNewCard.open();
 
-  const submitButton = popupCard.querySelector('.popup__submit');
-  validationFormCard.setButtonState(submitButton, false);
-  validationFormCard.clearErrorsForm(formCard);
+  validationFormCard.clearErrorsForm();
+  validationFormCard.disableSubmitButton();
 });
 
 
