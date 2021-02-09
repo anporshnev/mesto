@@ -32,7 +32,7 @@ const popupImage = new PopupWithImage(popupImageSelector);
 popupImage.setEventListeners();
 
 const handlePreviewPicture = data => {
-  popupImage.open(data.name, data.link);
+  popupImage.open(data);
 };
 
 const createInstanceCard = item => {
