@@ -1,6 +1,8 @@
 import './index.css';
 
 import {
+  apiConfig,
+
   cardSectionSelector,
   cardTemplateSelector,
   popupProfileSelector,
@@ -17,7 +19,8 @@ import {
 
 } from '../utils/constants.js';
 
-import  Card  from '../components/Card.js';
+import Api from '../components/Api.js';
+import Card  from '../components/Card.js';
 import Section from '../components/Section.js';
 import {initialCards} from '../utils/initial-arr.js';
 import PopupWithImage from '../components/PopupWithImage.js';
@@ -25,8 +28,22 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import {FormValidator, validationConfig} from '../components/FormValidator.js';
 import UserInfo from '../components/UserInfo.js';
 
+const api = new Api(apiConfig);
 
 const profileInfo = new UserInfo(profileSelectors);
+
+api
+  .getUserInfoServ()
+  .then(data => {
+    console.log(data)
+    profileInfo.setUserInfo(data);
+    profileInfo.updateUserInfo();
+  })
+  .catch(err => {
+  console.error(err);
+  })
+
+
 
 const popupImage = new PopupWithImage(popupImageSelector);
 popupImage.setEventListeners();

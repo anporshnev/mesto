@@ -1,3 +1,11 @@
+const apiConfig = {
+  url: 'https://mesto.nomoreparties.co/v1/cohort-20/',
+  headers: {
+    authorization: 'baadb45e-be37-4889-9243-ceacbed5cc22',
+    'Content-Type': 'application/json'
+  }
+}
+
 const cardTemplateSelector = '.card-template_type_default';
 const cardSectionSelector = '.elements';
 const popupImageSelector = '.popup-image';
@@ -17,6 +25,8 @@ const profileButtonEdit = document.querySelector('.profile__btn-edit');
 const profileButtonAdd = document.querySelector('.profile__btn-add');
 
 export {
+  apiConfig,
+
   cardSectionSelector,
   popupImageSelector,
   cardTemplateSelector,
