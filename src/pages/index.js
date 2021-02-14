@@ -32,18 +32,19 @@ const api = new Api(apiConfig);
 
 const profileInfo = new UserInfo(profileSelectors);
 
+let myID = null;
+
+const errorApi = err => {
+  console.error(err);
+  };
+
 api
   .getUserInfoServ()
   .then(data => {
-    console.log(data)
     profileInfo.setUserInfo(data);
     profileInfo.updateUserInfo();
   })
-  .catch(err => {
-  console.error(err);
-  })
-
-
+  .catch(errorApi)
 
 const popupImage = new PopupWithImage(popupImageSelector);
 popupImage.setEventListeners();
@@ -85,8 +86,14 @@ addNewCard.setEventListeners();
 const newInfoProfile = new PopupWithForm(
   popupProfileSelector, {
     handleFormSubmit: (dataForm) => {
-      profileInfo.setUserInfo(dataForm);
-      newInfoProfile.close();
+      api
+        .saveUserInfoServ(dataForm)
+        .then(data => {
+          profileInfo.setUserInfo(data);
+          profileInfo.updateUserInfo();
+          newInfoProfile.close();
+        })
+        .catch(errorApi)
     }
   }
 );
@@ -103,6 +110,7 @@ profileButtonEdit.addEventListener('click', () => {
   const getUserInfo = profileInfo.getUserInfo();
   popupInputName.value = getUserInfo.name;
   popupInputInterest.value = getUserInfo.about;
+
 
   validationFormProfile.clearErrorsForm();
   validationFormProfile.enableSubmitButton();

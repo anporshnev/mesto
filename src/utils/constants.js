@@ -16,7 +16,8 @@ const formCardSelector = '.form-card';
 
 const profileSelectors = {
   usernameSelector:'.profile__name',
-  aboutSelector:'.profile__text-interests'
+  aboutSelector:'.profile__text-interests',
+  avatarSelector: '.profile__avatar'
 }
 
 const popupInputName = document.querySelector('.popup__input_content_username');
