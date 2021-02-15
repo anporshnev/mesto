@@ -32,5 +32,12 @@ export default class Api {
     })
     .then(onResultQuery)
   }
+
+  getCardList() {
+    return fetch(`${this._url}cards`, {
+      headers: this._headers
+    })
+    .then(onResultQuery)
+  }
 }
 

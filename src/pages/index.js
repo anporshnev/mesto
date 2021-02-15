@@ -32,19 +32,22 @@ const api = new Api(apiConfig);
 
 const profileInfo = new UserInfo(profileSelectors);
 
-let myID = null;
+let userID = null;
 
 const errorApi = err => {
   console.error(err);
   };
 
-api
-  .getUserInfoServ()
-  .then(data => {
-    profileInfo.setUserInfo(data);
-    profileInfo.updateUserInfo();
-  })
-  .catch(errorApi)
+const updateProfile =() => {
+  api
+    .getUserInfoServ()
+    .then(data => {
+      profileInfo.setUserInfo(data);
+      profileInfo.updateUserInfo();
+    })
+    .catch(errorApi)
+}
+updateProfile();
 
 const popupImage = new PopupWithImage(popupImageSelector);
 popupImage.setEventListeners();
@@ -56,20 +59,38 @@ const handlePreviewPicture = data => {
 const createInstanceCard = item => {
   const card = new Card(item, cardTemplateSelector, handlePreviewPicture);
   const cardElement = card.generateCard();
-
   return cardElement;
 }
 
-const renderCards = new Section ({
-  items: initialCards,
-  renderer: (item) => {
-    const cardElement = createInstanceCard(item);
-    renderCards.addItem(cardElement);
-  }
-},
-cardSectionSelector);
+const renderCards = () => {
+  api
+    .getCardList()
+    .then(res => {
+      const cardsList = new Section({
+        items: res,
+        renderer: (item) => {
+          const cardElement = createInstanceCard(item);
+          cardsList.addItem(cardElement);
+        }
+      },
+        cardSectionSelector);
 
-renderCards.renderItems();
+        cardsList.renderItems();
+    })
+    .catch(errorApi)
+}
+renderCards();
+
+// const renderCards = new Section ({
+//   items: initialCards,
+//   renderer: (item) => {
+//     const cardElement = createInstanceCard(item);
+//     renderCards.addItem(cardElement);
+//   }
+// },
+// cardSectionSelector);
+
+// renderCards.renderItems();
 
 const addNewCard = new PopupWithForm(
   popupCardSelector, {
