@@ -1,8 +1,9 @@
 export default class Card {
 
-  constructor({name, link}, cardSelector, handlePreviewPicture) {
-    this._name = name;
-    this._link = link;
+  constructor(data, cardSelector, handlePreviewPicture) {
+    this._name = data.name;
+    this._link = data.link;
+    this._like = data.likes;
     this._cardSelector = cardSelector;
     this._handlePreviewPicture = handlePreviewPicture;
   }
@@ -23,6 +24,7 @@ export default class Card {
     this._element.querySelector('.card__title').textContent = this._name;
     this._cardImage.src = this._link;
     this._cardImage.alt = `Изображение места ${this._name}`;
+    this._element.querySelector('.card__like-count').textContent = this._like.length;
 
     this._setEventListeners();
 

@@ -71,6 +71,7 @@ cardSectionSelector);
 api
   .getCardList()
   .then(cardsArray => {
+    console.log(cardsArray)
     renderCards.renderItems(cardsArray)
   })
   .catch(errorApi)
