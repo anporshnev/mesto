@@ -22,7 +22,6 @@ import {
 import Api from '../components/Api.js';
 import Card  from '../components/Card.js';
 import Section from '../components/Section.js';
-import {initialCards} from '../utils/initial-arr.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import {FormValidator, validationConfig} from '../components/FormValidator.js';
@@ -62,46 +61,33 @@ const createInstanceCard = item => {
   return cardElement;
 }
 
-const renderCards = () => {
-  api
-    .getCardList()
-    .then(res => {
-      const cardsList = new Section({
-        items: res,
-        renderer: (item) => {
-          const cardElement = createInstanceCard(item);
-          cardsList.addItem(cardElement);
-        }
-      },
-        cardSectionSelector);
+const renderCards = new Section ({
+  renderer: (item) => {
+    renderCards.addItem(createInstanceCard(item))
+  }
+},
+cardSectionSelector);
 
-        cardsList.renderItems();
-    })
-    .catch(errorApi)
-}
-renderCards();
-
-// const renderCards = new Section ({
-//   items: initialCards,
-//   renderer: (item) => {
-//     const cardElement = createInstanceCard(item);
-//     renderCards.addItem(cardElement);
-//   }
-// },
-// cardSectionSelector);
-
-// renderCards.renderItems();
+api
+  .getCardList()
+  .then(cardsArray => {
+    renderCards.renderItems(cardsArray)
+  })
+  .catch(errorApi)
 
 const addNewCard = new PopupWithForm(
   popupCardSelector, {
     handleFormSubmit: (dataForm) => {
-      const cardElement = createInstanceCard(dataForm);
-      renderCards.prependItem(cardElement);
-      addNewCard.close();
+      api
+        .saveNewCard(dataForm)
+        .then(cardData => {
+          renderCards.prependItem(createInstanceCard(cardData))
+          addNewCard.close();
+        })
+        .catch(errorApi)
     }
   }
 );
-
 addNewCard.setEventListeners();
 
 const newInfoProfile = new PopupWithForm(

@@ -39,5 +39,14 @@ export default class Api {
     })
     .then(onResultQuery)
   }
+
+  saveNewCard(data) {
+    return fetch(`${this._url}cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify(data)
+    })
+    .then(onResultQuery)
+  }
 }
 
