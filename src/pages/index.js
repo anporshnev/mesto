@@ -26,12 +26,13 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import {FormValidator, validationConfig} from '../components/FormValidator.js';
 import UserInfo from '../components/UserInfo.js';
+import PopupConfirmDelete from '../components/PopupConfirmDelete.js';
 
 const api = new Api(apiConfig);
 
 const profileInfo = new UserInfo(profileSelectors);
 
-let userID = null;
+let userId = null;
 
 const errorApi = err => {
   console.error(err);
@@ -41,6 +42,7 @@ const updateProfile =() => {
   api
     .getUserInfoServ()
     .then(data => {
+      userId = data._id;
       profileInfo.setUserInfo(data);
       profileInfo.updateUserInfo();
     })
@@ -56,13 +58,14 @@ const handlePreviewPicture = data => {
 };
 
 const createInstanceCard = item => {
-  const card = new Card(item, cardTemplateSelector, handlePreviewPicture);
+  const card = new Card({...item, currentUserId: userId}, cardTemplateSelector, handlePreviewPicture);
   const cardElement = card.generateCard();
   return cardElement;
 }
 
 const renderCards = new Section ({
   renderer: (item) => {
+    // console.log(item.owner)
     renderCards.addItem(createInstanceCard(item))
   }
 },
@@ -71,6 +74,7 @@ cardSectionSelector);
 api
   .getCardList()
   .then(cardsArray => {
+    // console.log(cardsArray)
     renderCards.renderItems(cardsArray)
   })
   .catch(errorApi)
@@ -81,7 +85,7 @@ const addNewCard = new PopupWithForm(
       api
         .saveNewCard(dataForm)
         .then(cardData => {
-          renderCards.prependItem(createInstanceCard(cardData))
+          renderCards.prependItem(createInstanceCard(cardData));
           addNewCard.close();
         })
         .catch(errorApi)

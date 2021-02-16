@@ -4,6 +4,9 @@ export default class Card {
     this._name = data.name;
     this._link = data.link;
     this._like = data.likes;
+    this._cardId = data._id;
+    this._cardOwnerId = data.owner._id;
+    this._currentUserId = data.currentUserId;
     this._cardSelector = cardSelector;
     this._handlePreviewPicture = handlePreviewPicture;
   }
@@ -26,6 +29,7 @@ export default class Card {
     this._cardImage.alt = `Изображение места ${this._name}`;
     this._element.querySelector('.card__like-count').textContent = this._like.length;
 
+    this._setStateDelButton();
     this._setEventListeners();
 
     return this._element;
@@ -56,5 +60,11 @@ export default class Card {
   _handleDeleteCard() {
     this._element.closest('.card').remove();
   };
+
+  _setStateDelButton() {
+    if (this._currentUserId != this._cardOwnerId) {
+      this._element.querySelector('.card__btn-remove').classList.add('card__btn-remove_disable');
+    }
+  }
 }
 
