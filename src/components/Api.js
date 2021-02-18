@@ -48,5 +48,12 @@ export default class Api {
     })
     .then(onResultQuery)
   }
-}
 
+  removeCard(item) {
+    return fetch(`${this._url}cards/${item._id}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+    .then(onResultQuery)
+  }
+}

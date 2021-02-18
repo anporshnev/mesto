@@ -8,6 +8,7 @@ import {
   popupProfileSelector,
   popupCardSelector,
   popupImageSelector,
+  popupConfirmSelector,
   formProfileSelector,
   formCardSelector,
   profileSelectors,
@@ -34,6 +35,8 @@ const profileInfo = new UserInfo(profileSelectors);
 
 let userId = null;
 
+let templateCard = null;
+
 const errorApi = err => {
   console.error(err);
   };
@@ -57,27 +60,46 @@ const handlePreviewPicture = data => {
   popupImage.open(data);
 };
 
+const popupConfirm = new PopupConfirmDelete(popupConfirmSelector, {
+  handle: (data) => {
+    api
+      .removeCard(data)
+      .then( () => {
+        templateCard.handleDeleteCard();
+        popupConfirm.close();
+    })
+      .catch(errorApi)
+  }
+});
+popupConfirm.setEventListeners();
+
 const createInstanceCard = item => {
-  const card = new Card({...item, currentUserId: userId}, cardTemplateSelector, handlePreviewPicture);
+  const card = new Card({...item, currentUserId: userId}, cardTemplateSelector, handlePreviewPicture, {
+    handleDeleteCardClick: (data) => {
+      templateCard = card;
+      popupConfirm.open(data);
+    }
+  });
   const cardElement = card.generateCard();
   return cardElement;
 }
 
 const renderCards = new Section ({
   renderer: (item) => {
-    // console.log(item.owner)
     renderCards.addItem(createInstanceCard(item))
   }
 },
 cardSectionSelector);
 
-api
+const cardList = () => {
+  api
   .getCardList()
   .then(cardsArray => {
-    // console.log(cardsArray)
     renderCards.renderItems(cardsArray)
   })
   .catch(errorApi)
+}
+cardList();
 
 const addNewCard = new PopupWithForm(
   popupCardSelector, {

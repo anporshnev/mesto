@@ -11,6 +11,7 @@ const cardSectionSelector = '.elements';
 const popupImageSelector = '.popup-image';
 const popupProfileSelector = '.popup-profile';
 const popupCardSelector = '.popup-card';
+const popupConfirmSelector = '.popup-confirm';
 const formProfileSelector = '.form-profile';
 const formCardSelector = '.form-card';
 
@@ -33,6 +34,7 @@ export {
   cardTemplateSelector,
   popupProfileSelector,
   popupCardSelector,
+  popupConfirmSelector,
   formProfileSelector,
   formCardSelector,
   profileSelectors,
