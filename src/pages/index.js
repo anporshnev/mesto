@@ -61,9 +61,9 @@ const handlePreviewPicture = data => {
 };
 
 const popupConfirm = new PopupConfirmDelete(popupConfirmSelector, {
-  handle: (data) => {
+  handle: (cardId) => {
     api
-      .removeCard(data)
+      .removeCard(cardId)
       .then( () => {
         templateCard.handleDeleteCard();
         popupConfirm.close();
@@ -75,9 +75,9 @@ popupConfirm.setEventListeners();
 
 const createInstanceCard = item => {
   const card = new Card({...item, currentUserId: userId}, cardTemplateSelector, handlePreviewPicture, {
-    handleDeleteCardClick: (data) => {
+    handleDeleteCardClick: (cardId) => {
       templateCard = card;
-      popupConfirm.open(data);
+      popupConfirm.open(cardId);
     }
   });
   const cardElement = card.generateCard();

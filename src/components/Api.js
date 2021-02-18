@@ -12,11 +12,6 @@ export default class Api {
     this._headers = headers;
   }
 
-  test() {
-    console.log(`'${this._url}users/me'`)
-    console.log(this._headers)
-  }
-
   getUserInfoServ() {
     return fetch(`${this._url}users/me`, {
       headers: this._headers
@@ -49,8 +44,24 @@ export default class Api {
     .then(onResultQuery)
   }
 
-  removeCard(item) {
-    return fetch(`${this._url}cards/${item._id}`, {
+  removeCard(cardId) {
+    return fetch(`${this._url}cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+    .then(onResultQuery)
+  }
+
+  showLike(cardId) {
+    return fetch(`${this._url}cards/likes/${cardId}`, {
+      method: 'PUT',
+      headers: this._headers,
+    })
+    .then(onResultQuery)
+  }
+
+  hideLike(cardId) {
+    return fetch(`${this._url}cards/likes/${cardId}`, {
       method: 'DELETE',
       headers: this._headers,
     })

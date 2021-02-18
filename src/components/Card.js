@@ -43,7 +43,7 @@ export default class Card {
     });
 
     this._element.querySelector('.card__btn-remove').addEventListener('click', () => {
-      this._handleDeleteCardClick(this._data);
+      this._handleDeleteCardClick(this._cardId);
     });
 
     this._cardImage.addEventListener('click', () => {
