@@ -78,8 +78,31 @@ const createInstanceCard = item => {
     handleDeleteCardClick: (cardId) => {
       templateCard = card;
       popupConfirm.open(cardId);
+    },
+
+    handleLikeClick: (cardId) => {
+      if(card.getStateMyLike()) {
+        api
+          .delLike(cardId)
+          .then((res) => {
+            card.reloadDataCard(res);
+            card.toggleLike('false');
+            card.setLikeCount(res.likes)
+          })
+          .catch(errorApi)
+      } else {
+        api
+          .addLike(cardId)
+          .then((res) => {
+            card.reloadDataCard(res);
+            card.toggleLike('true');
+            card.setLikeCount(res.likes)
+          })
+          .catch(errorApi)
+      }
     }
   });
+
   const cardElement = card.generateCard();
   return cardElement;
 }

@@ -1,7 +1,7 @@
 export default class Card {
 
-  constructor(data, cardSelector, handlePreviewPicture, { handleDeleteCardClick }) {
-    this._data = data;
+  constructor(data, cardSelector, handlePreviewPicture, { handleDeleteCardClick, handleLikeClick }) {
+    // this._data = data;
     this._name = data.name;
     this._link = data.link;
     this._like = data.likes;
@@ -11,6 +11,7 @@ export default class Card {
     this._cardSelector = cardSelector;
     this._handlePreviewPicture = handlePreviewPicture;
     this._handleDeleteCardClick = handleDeleteCardClick;
+    this._handleLikeClick = handleLikeClick;
   }
 
   _getTemplate() {
@@ -29,9 +30,10 @@ export default class Card {
     this._element.querySelector('.card__title').textContent = this._name;
     this._cardImage.src = this._link;
     this._cardImage.alt = `Изображение места ${this._name}`;
-    this._element.querySelector('.card__like-count').textContent = this._like.length;
 
+    this.setLikeCount(this._like);
     this._setStateDelButton();
+    this.toggleLike(this.getStateMyLike());
     this._setEventListeners();
 
     return this._element;
@@ -39,7 +41,7 @@ export default class Card {
 
   _setEventListeners() {
     this._element.querySelector('.card__btn-like').addEventListener('click', () => {
-      this._handleLikeIcon();
+      this._handleLikeClick(this._cardId);
     });
 
     this._element.querySelector('.card__btn-remove').addEventListener('click', () => {
@@ -55,10 +57,6 @@ export default class Card {
     });
   }
 
-  _handleLikeIcon() {
-    this._element.querySelector('.card__btn-like').classList.toggle('card__btn-like_active');
-  };
-
   handleDeleteCard() {
     this._element.closest('.card').remove();
   };
@@ -67,6 +65,25 @@ export default class Card {
     if (this._currentUserId != this._cardOwnerId) {
       this._element.querySelector('.card__btn-remove').classList.add('card__btn-remove_disable');
     }
+  };
+
+  getStateMyLike() {
+    return Boolean (this._like.find(item => item._id === this._currentUserId))
+  }
+
+  toggleLike(state) {
+    if(state) {
+      this._element.querySelector('.card__btn-like').classList.toggle('card__btn-like_active');
+    }
+  }
+
+  setLikeCount(data) {
+    this._element.querySelector('.card__like-count').textContent = data.length;
+  }
+
+  reloadDataCard(data) {
+    this._like = data.likes;
+    console.log(this._like)
   }
 
 }

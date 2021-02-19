@@ -52,7 +52,7 @@ export default class Api {
     .then(onResultQuery)
   }
 
-  showLike(cardId) {
+  addLike(cardId) {
     return fetch(`${this._url}cards/likes/${cardId}`, {
       method: 'PUT',
       headers: this._headers,
@@ -60,7 +60,7 @@ export default class Api {
     .then(onResultQuery)
   }
 
-  hideLike(cardId) {
+  delLike(cardId) {
     return fetch(`${this._url}cards/likes/${cardId}`, {
       method: 'DELETE',
       headers: this._headers,
