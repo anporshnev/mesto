@@ -87,18 +87,18 @@ const createInstanceCard = item => {
           .then((res) => {
             card.reloadDataCard(res);
             card.toggleLike('false');
-            card.setLikeCount(res.likes)
+            card.setLikeCount(res.likes);
           })
-          .catch(errorApi)
+          .catch(errorApi);
       } else {
         api
           .addLike(cardId)
           .then((res) => {
             card.reloadDataCard(res);
             card.toggleLike('true');
-            card.setLikeCount(res.likes)
+            card.setLikeCount(res.likes);
           })
-          .catch(errorApi)
+          .catch(errorApi);
       }
     }
   });

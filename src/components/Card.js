@@ -68,7 +68,7 @@ export default class Card {
   };
 
   getStateMyLike() {
-    return Boolean (this._like.find(item => item._id === this._currentUserId))
+    return Boolean (this._like.find(item => item._id === this._currentUserId));
   }
 
   toggleLike(state) {
@@ -83,7 +83,6 @@ export default class Card {
 
   reloadDataCard(data) {
     this._like = data.likes;
-    console.log(this._like)
   }
 
 }
