@@ -34,6 +34,9 @@ import PopupConfirmDelete from '../components/PopupConfirmDelete.js';
 
 const api = new Api(apiConfig);
 
+
+// api.promiseAll()
+
 const profileInfo = new UserInfo(profileSelectors);
 
 let userId = null;
@@ -89,7 +92,7 @@ const createInstanceCard = item => {
           .delLike(cardId)
           .then((res) => {
             card.reloadDataCard(res);
-            card.toggleLike('false');
+            card.switchLike(false);
             card.setLikeCount(res.likes);
           })
           .catch(errorApi);
@@ -98,7 +101,7 @@ const createInstanceCard = item => {
           .addLike(cardId)
           .then((res) => {
             card.reloadDataCard(res);
-            card.toggleLike('true');
+            card.switchLike(true);
             card.setLikeCount(res.likes);
           })
           .catch(errorApi);
@@ -130,6 +133,7 @@ cardList();
 const addNewCard = new PopupWithForm(
   popupCardSelector, {
     handleFormSubmit: (dataForm) => {
+      addNewCard.renderLoading(true)
       api
         .saveNewCard(dataForm)
         .then(cardData => {
@@ -137,6 +141,7 @@ const addNewCard = new PopupWithForm(
           addNewCard.close();
         })
         .catch(errorApi)
+        .finally(() => {addNewCard.renderLoading(false)})
     }
   }
 );
@@ -145,6 +150,7 @@ addNewCard.setEventListeners();
 const newInfoProfile = new PopupWithForm(
   popupProfileSelector, {
     handleFormSubmit: (dataForm) => {
+      newInfoProfile.renderLoading(true)
       api
         .saveUserInfoServ(dataForm)
         .then(data => {
@@ -153,6 +159,7 @@ const newInfoProfile = new PopupWithForm(
           newInfoProfile.close();
         })
         .catch(errorApi)
+        .finally(() => {newInfoProfile.renderLoading(false)})
     }
   }
 );
@@ -161,6 +168,7 @@ newInfoProfile.setEventListeners();
 const newAvatar = new PopupWithForm(
   popupAvatarSelector, {
     handleFormSubmit: (dataForm) => {
+      newAvatar.renderLoading(true)
       api
         .updateAvatar({avatar: dataForm.link})
         .then(data => {
@@ -169,6 +177,7 @@ const newAvatar = new PopupWithForm(
           newAvatar.close();
         })
         .catch(errorApi)
+        .finally(() => {newAvatar.renderLoading(false)})
     }
   }
 )
@@ -197,12 +206,12 @@ profileButtonEdit.addEventListener('click', () => {
 profileButtonAdd.addEventListener('click', () => {
   validationFormCard.clearErrorsForm();
   validationFormCard.disableSubmitButton();
-
   addNewCard.open();
 });
 
 profileAvatar.addEventListener('click', () => {
   validationFormAvatar.clearErrorsForm();
+  validationFormAvatar.disableSubmitButton();
   newAvatar.open();
 });
 

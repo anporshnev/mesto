@@ -5,7 +5,6 @@ const onResultQuery = res => {
     return Promise.reject(`Ошибка: ${res.status}`);
 }
 
-
 export default class Api {
   constructor({ url, headers }) {
     this._url = url;
@@ -76,4 +75,11 @@ export default class Api {
     })
     .then(onResultQuery)
   }
+
+  // promiseAll() {
+  //   Promise.all([this.getUserInfoServ(), this.getCardList()])
+  //   .then(res => {
+  //     console.log(res)
+  //   })
+  // }
 }

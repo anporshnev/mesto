@@ -33,7 +33,7 @@ export default class Card {
 
     this.setLikeCount(this._like);
     this._setStateDelButton();
-    this.toggleLike(this.getStateMyLike());
+    this.switchLike(this.getStateMyLike());
     this._setEventListeners();
 
     return this._element;
@@ -71,9 +71,11 @@ export default class Card {
     return Boolean (this._like.find(item => item._id === this._currentUserId));
   }
 
-  toggleLike(state) {
+  switchLike(state) {
     if(state) {
-      this._element.querySelector('.card__btn-like').classList.toggle('card__btn-like_active');
+      this._element.querySelector('.card__btn-like').classList.add('card__btn-like_active');
+    } else {
+      this._element.querySelector('.card__btn-like').classList.remove('card__btn-like_active');
     }
   }
 
