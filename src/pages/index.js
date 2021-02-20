@@ -9,14 +9,17 @@ import {
   popupCardSelector,
   popupImageSelector,
   popupConfirmSelector,
+  popupAvatarSelector,
   formProfileSelector,
   formCardSelector,
+  formAvatarSelector,
   profileSelectors,
 
   popupInputName,
   popupInputInterest,
   profileButtonEdit,
-  profileButtonAdd
+  profileButtonAdd,
+  profileAvatar
 
 } from '../utils/constants.js';
 
@@ -153,8 +156,23 @@ const newInfoProfile = new PopupWithForm(
     }
   }
 );
-
 newInfoProfile.setEventListeners();
+
+const newAvatar = new PopupWithForm(
+  popupAvatarSelector, {
+    handleFormSubmit: (dataForm) => {
+      api
+        .updateAvatar({avatar: dataForm.link})
+        .then(data => {
+          profileInfo.setUserInfo(data);
+          profileInfo.updateUserInfo();
+          newAvatar.close();
+        })
+        .catch(errorApi)
+    }
+  }
+)
+newAvatar.setEventListeners();
 
 const validationFormProfile = new FormValidator(validationConfig, formProfileSelector);
 validationFormProfile.enableValidation();
@@ -162,11 +180,13 @@ validationFormProfile.enableValidation();
 const validationFormCard = new FormValidator(validationConfig, formCardSelector);
 validationFormCard.enableValidation();
 
+const validationFormAvatar = new FormValidator(validationConfig, formAvatarSelector);
+validationFormAvatar.enableValidation();
+
 profileButtonEdit.addEventListener('click', () => {
   const getUserInfo = profileInfo.getUserInfo();
   popupInputName.value = getUserInfo.name;
   popupInputInterest.value = getUserInfo.about;
-
 
   validationFormProfile.clearErrorsForm();
   validationFormProfile.enableSubmitButton();
@@ -175,11 +195,18 @@ profileButtonEdit.addEventListener('click', () => {
 });
 
 profileButtonAdd.addEventListener('click', () => {
-  addNewCard.open();
-
   validationFormCard.clearErrorsForm();
   validationFormCard.disableSubmitButton();
+
+  addNewCard.open();
 });
+
+profileAvatar.addEventListener('click', () => {
+  validationFormAvatar.clearErrorsForm();
+  newAvatar.open();
+});
+
+
 
 
 

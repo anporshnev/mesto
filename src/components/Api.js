@@ -67,4 +67,13 @@ export default class Api {
     })
     .then(onResultQuery)
   }
+
+  updateAvatar(link) {
+    return fetch(`${this._url}users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify(link)
+    })
+    .then(onResultQuery)
+  }
 }
