@@ -34,9 +34,6 @@ import PopupConfirmDelete from '../components/PopupConfirmDelete.js';
 
 const api = new Api(apiConfig);
 
-
-// api.promiseAll()
-
 const profileInfo = new UserInfo(profileSelectors);
 
 let userId = null;

@@ -75,11 +75,4 @@ export default class Api {
     })
     .then(onResultQuery)
   }
-
-  // promiseAll() {
-  //   Promise.all([this.getUserInfoServ(), this.getCardList()])
-  //   .then(res => {
-  //     console.log(res)
-  //   })
-  // }
 }
