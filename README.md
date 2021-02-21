@@ -30,4 +30,5 @@
 * Асинхронностью
 * Работой с API
 
-* [Ссылка на проект](https://anporshnev.github.io/mesto/index.html)
+
+[Ссылка на проект](https://anporshnev.github.io/mesto/)
